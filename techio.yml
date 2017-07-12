@@ -2,8 +2,8 @@ title : Functional Programming with Python
 
 # Table of content
 plan:
-  - title: Welcome # Set the page title
-    statement: markdowns/welcome.md # Set the file path to the page content
+  - title: Introduction # Set the page title
+    statement: markdowns/introduction.md # Set the file path to the page content
 #  - title: Another Page
 #    statement: markdowns/another-page.md
 
