@@ -17,12 +17,12 @@ A function that receives another function as an argument is called an higher ord
 
 ```python
 class BonusChest(object):
-	def __init__(self,x,y,numCoins):
-		self.x = x
-		self.y = y
-		self.numCoins
-	def getNumCoins(self):
-		return self.numCoins
+    def __init__(self,x,y,numCoins):
+        self.x = x
+        self.y = y
+        self.numCoins
+    def getNumCoins(self):
+        return self.numCoins
 ```
 
 To sort a list of bonus chests with respect to the number of coins they contain, you can call: 
@@ -36,7 +36,7 @@ Getters and setters are less common within Python programs, so the instances you
 
 ```python
 def getNumCoins(chest):
-	return chest.numCoins
+    return chest.numCoins
 
 sortedChests = sorted(chestList,key=getNumCoins)
 ```

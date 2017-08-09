@@ -9,7 +9,7 @@ Consider you have a list of characters : `characterList`. With `all` you can wri
 
 ```python
 if all(character.isDead for character in characterList):
-	lostGame()
+    lostGame()
 ```
 
 instead of : 
@@ -17,10 +17,10 @@ instead of :
 ```python
 lost = True
 for character in characterList:
-	if not character.isDead:
-		lost = False
-		break
+    if not character.isDead:
+        lost = False
+        break
 
 if lost:
-	lostGame()
+    lostGame()
 ```
