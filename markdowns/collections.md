@@ -13,7 +13,7 @@ To create a generator expression, simply replace the surrounding brackets by bra
 
 # Tests on collections with `any`, `all`
 
-`any`, `all` have a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
+`any` and `all` have a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
 
 ```python
 any([True,False,False]) # True
@@ -84,4 +84,13 @@ for index,character in enumerate(characterList):
 
 Note that `zip` is not limited to 2 collections and works with an arbitrary number of collections. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
 
-# Summing over a collection with `sum`
+# Reducing functions: `sum`, `min` and `max`
+
+In functional programming, reducing a collection means iterating the collection to create a single value. `sum`, `min` and `max` all work on number collections, but with generator expression their scope is much wider. For example:
+
+```python
+myScore = sum(chest.value for chest in chestList)
+opponentStrength = max(character.strength for character in opponentList)
+```
+
+`min` and `max` do not support empty collections and will raise a ValueError exception when they receive one. `sum` returns 0  for an empty collection.
