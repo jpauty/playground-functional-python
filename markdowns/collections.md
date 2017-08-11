@@ -11,7 +11,7 @@ There are situations where the created list is only iterated once, typically in 
 
 To create a generator expression, simply replace the surrounding brackets by braces: `evens = (n*2 for n in range(10))`. A generator expression can only be iterated once and cannot be accessed by index. Nevertheless, there are many cases where they can be used instead of a list comprehension.
 
-# Tests on collections with `any`, `all`
+# Tests on collections with `any` and `all`
 
 `any` and `all` have a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
 
@@ -46,7 +46,7 @@ if lost:
     lostGame()
 ```
 
-The call to `all` uses a generator expression. When you pass a generator to single argument function, you can omit the surrounding braces of the generator expression.  
+The call to `all` uses a generator expression. When you pass a generator expression to a single argument function, you can omit the surrounding braces.  
 
 `any` and `all` are efficient, because they will stop the evaluation as soon as possible. `any` stops on the first true item. Conversely, `all` stops on the first false item. 
 
@@ -56,7 +56,7 @@ With `zip` you can iterate several collections at the same time. For example :
 
 ```python
 destinations = buildNextDestinations()
-for character, destination in zip(characterList, destination):
+for character, destination in zip(characterList, destinations):
     character.moveTo(destination)
 ```
 
@@ -86,7 +86,7 @@ Note that `zip` is not limited to 2 collections and works with an arbitrary numb
 
 # Reducing functions: `sum`, `min` and `max`
 
-In functional programming, reducing a collection means iterating the collection to create a single value. `sum`, `min` and `max` all work on number collections, but with generator expression their scope is much wider. For example:
+In functional programming terminology, reducing a collection means iterating the collection in order to create a single value. `sum`, `min` and `max` all work on number collections, but with generator expressions their scope is much wider. For example:
 
 ```python
 myScore = sum(chest.value for chest in chestList)

@@ -1,75 +1,16 @@
-# Welcome!
+With now come back to higher order functions. I will present `map` and `filter`.  `filter` applies a function to each item of the source collection and create a new one by keeping the items for which this function returns true.
 
-This playground shows the useful, but lesser known, functional programming features of Python. Python is well known for its object oriented programming features: classes, methods, inheritance... However, Python is not restricted to object oriented programming, it offers several very useful features that enables the programmer to use the regular functional programming idioms, such as higher order functions and data collections. These programming patterns are a useful addition to the arsenal of the regular Python developer.
+# Converting the items of a collection with `map`.
 
-I suppose here that: (1) you have basic knowledge of object oriented programming; (2) you have written a couple of Python programs. If you don't know Python, but know Javascript or Ruby, you should be able to follow this lesson easily.
+`map` creates a new collection by applying a function to each item of the source collection. To get the 10 first even numbers, with `map` you can write: `evens = map(lambda n: n*2, range(20))`.
 
-# Functional Programming
+`map` returns an iterator. The good point is that it saves memory. The bad point is that it can be iterated only once. If you need to iterate the collection several times, or to access items by index, then create a list out of the iterator: `evens = list(map(lambda n: n*2, range(20)))`.
 
-One of the main concept of functional programming is *first class functions*. Simply said, it means that functions can be used like any other data type. You can :
- * store a function in a variable;
- * pass a function as an argument to another function;
- * return a function as the result of a function call;
- * make a list of function;
- * ...
- 
-A function that receives another function as an argument is called an higher order function. A well known higher order function of Python is `sorted`. In its simplest form, `sorted` can be used to sort a list of integers: `sorted([23,545,3])`. `sorted` has an optional argument `key`, which is a function with one argument. `sorted` will call the `key` function for each element and use the returned values to sort the list. Consider the following class, which models a bonus chest in an adventure game:
+Most of the time, you can use a generator expression instead of a call to `map`. Which one to use is up to your preferences. If you have to define a function inline using `lambda`, then I think a generator expression will be a bit more clearer than a call to `map`. However, if the mapping function already exists then I prefer a call to `map`. Compare for yourself:
 
 ```python
-class BonusChest(object):
-    def __init__(self,x,y,numCoins):
-        self.x = x
-        self.y = y
-        self.numCoins
-    def getNumCoins(self):
-        return self.numCoins
+# we reuse the class BonusChest of the introduction
+wealthMap = sum(map(BonusChest.getNumCoins, myChests))
+wealthGen = sum(chest.getNumCoins() for chest in myChests)
 ```
 
-To sort a list of bonus chests with respect to the number of coins they contain, you can call: 
-```python
-sorted(chestList,key=BonusChest.getNumCoins)`.
-``` 
-
-`BonusChest.getNumCoins` is actually a function which takes a `BonusChest` instance as unique parameter.  `sorted` will call this function on each chest and use the result to sort them. Python calls such a function an unbounded method.
-
-Getters and setters are less common within Python programs, so the instances you are sorting may not provide the needed `key` function to pass to `sorted`. You can create a function, outside the `BonusChest` class and pass it to `sorted`:
-
-```python
-def getNumCoins(chest):
-    return chest.numCoins
-
-sortedChests = sorted(chestList,key=getNumCoins)
-```
-
-Writing a separated function each time you want to sort a collection is not very practical, especially if this function will only be used by sorted. For such situations, Python offers the `lambda` keyword, which enables you to define a function on the fly: `sorted(chestList, key=lambda chest:chest.numCoins)`.   
-Don't be afraid by the lambda keyword. Here, it just means: "I'm defining a function which takes a single argument `chest` and returns the value of the expression `chest.numCoins`. The body of lambda function is defined after the column and must be a single expression. The returned value is the value of this expression. Python uses the keyword `lambda` as a reference to Lambda calculus, the grand father of functional programming.
-
-
-This Python template lets you get started quickly with a simple working example. If it is your first contribution then you should have a look at the [Getting Started](https://tech.io/doc/getting-started-create-playground) document.
-
-
-The source code is on [GitHub](https://github.com/TechDotIO/python-template), please feel free to come up with proposals to improve it.
-
-# Hands-on Demo
-
-@[Luke, how many stars are there in these galaxies?]({"stubs": ["universe.py"], "command": "python3 test_universe.py"})
-
-Check out the markdown file [`welcome.md`](https://github.com/TechDotIO/python-template/blob/master/markdowns/welcome.md) to see how this exercise is injected into the template.
-
-# Template Resources
-
-[`markdowns/welcome.md`](https://github.com/TechDotIO/python-template/blob/master/markdowns/welcome.md)
-What you are reading here is generated by this file. Tech.io uses the [Markdown syntax](https://tech.io/doc/reference-markdowns) to render text, media and to inject programming exercises.
-
-
-[`python-project`](https://github.com/TechDotIO/python-template/tree/master/python-project)
-A simple Python project dedicated to run the programming exercise above. A project relies on a Docker image to run. You can find images on the [Docker Hub](https://hub.docker.com/explore/) or you can even [build your own](https://tech.io/doc/reference-runner).
-
-
-[`techio.yml`](https://github.com/TechDotIO/python-template/blob/master/techio.yml)
-This *mandatory* file describes both the table of content and the programming project(s). The file path should not be changed.
-
-
-# Visual and Interactive Content
-
-Tech.io provides all the tools to embed visual and interactive content like a Web app or a Unix terminal within your contribution. Please refer to the [documentation](https://tech.io/doc) to learn more about the viewer integrations.
