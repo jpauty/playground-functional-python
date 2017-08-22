@@ -1,4 +1,4 @@
-We now come back to higher order functions. I will present `map` and `filter`, which both take a function and an iterator as parameters and return a new iterator. 
+We now come back to higher order functions. I will present `map`, `filter` and `reduce`. Like `sorted`, these functions take a function and an iterator as parameters. 
 
 # Converting the items of a collection with `map`.
 
@@ -20,4 +20,17 @@ wealthGen = sum(chest.getNumCoins() for chest in myChests)
 
 Again, to get the 10 first even numbers, with `map` you can write: `evens = filter(lambda n: n%2==0, range(20))`.
 
+Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`.  
+
+# Aggregating a collections to a single value with `reduce`
+
+When we work with collections, two very common programming patterns emerge: 
+ * iterating a collection to build another collection. In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map` and `filter` fall into this category.
+ * iteration a collection and accumulating intermediate results to build a single value. For example, in an imperative manner, you would write: ```python
+fact10=1
+for n in range(1,10):
+    fact10 = fact*n
+``` `reduce` enable to perform the same computation, but written in a functional way.  
+
+`map` and `filter` create an iterator from another iterator. 
 

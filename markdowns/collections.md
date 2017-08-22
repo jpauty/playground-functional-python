@@ -60,7 +60,7 @@ for character, destination in zip(characterList, destinations):
     character.moveTo(destination)
 ```
 
-The length of the returned iterator is the length of the shortest parameter. If you prefer : `zipLen = min(len(param) for param in zipParams))`.  
+The length of the returned iterator is the length of the shortest parameter. If you prefer : `zipLen = min(map(len,zipParams))`.  
 
 Often, when you iterate a collection you need the index of the current item. With `zip` you can write: 
 
@@ -86,7 +86,7 @@ for index,character in enumerate(characterList):
 
 Here is another nice use case for `zip`. Consider the list `path=['A','B','C','D']` representing an ordered sequence, for example a path returned by a path finding algorithm. You can easily build the edges of the path with: `zip(path,path[1:])`. This call will return an iterator containing the pairs: `(A,B)`,`(B,C)` and `(C,D)`. Since `path[1:]` has a length of 3, as expected, the result contains 3 pairs.   
 
-Note that `zip` is not limited to 2 collections and works with an arbitrary number of collections. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
+Note that `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
 
 # Reducing functions: `sum`, `min` and `max`
 
