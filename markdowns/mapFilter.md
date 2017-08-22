@@ -26,11 +26,11 @@ Like `map`, most of the time you can replace a call to `filter` by a generator e
 
 When we work with collections, two very common programming patterns emerge: 
  * iterating a collection to build another collection. In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map` and `filter` fall into this category.
- * iteration a collection and accumulating intermediate results to build a single value. For example, in an imperative manner, you would write: ```python
+ * iterating a collection and accumulating intermediate results to build a single value. For example, in an imperative manner, you would write: 
+```python
 fact10=1
 for n in range(1,10):
     fact10 = fact*n
-``` `reduce` enable to perform the same computation, but written in a functional way.  
-
-`map` and `filter` create an iterator from another iterator. 
+```
+`reduce` enables to perform the same computation, but written in a functional way.   
 
