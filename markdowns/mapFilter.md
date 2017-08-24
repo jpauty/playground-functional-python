@@ -28,14 +28,16 @@ Like `map`, most of the time you can replace a call to `filter` by a generator e
 
 # Aggregating a collections to a single value with `reduce`
 
-In this section we will study `reduce`, and we will also try learn some functional thinking: how can we convert imperative code to functional code. We will rely on the factorial function as our supporting example.
+In this section we will study `reduce`, and we will also try learn some functional thinking: how can we convert imperative code to functional code ? We will rely on the factorial function as our supporting example.
+
+## From an imperative factorial to a functional one
 
 In an imperative manner, you would compute factorial(10) in the following way: 
 ```python
 def factorial(n):
     fact = 1
     for currentValue in range(1,n):
-      fact = fact*currentValue
+        fact = fact*currentValue
     return fact
 fact10 = factorial(10) 
 ```
@@ -48,7 +50,7 @@ So, how do we rewrite this function in a functional style ? We saw that function
  1. an initial value for the accumulated value.
 `reduce` returns the final accumulated value.   
 
-For factorial the accumulating function is the multiplication. We have the first argument and can write `reduce(mult,?,?)`. We suppose here that we have a `mult` function defined and available. We found that the accumulated collection is `range(1,n)`, so we can fill in the second argument:  `reduce(mult,range(1,n),?)`. We just need the start value to complete our call. It's of course 1 for factorial, but you can also find it by searching the accumulator variable in the imperative version and lookup its initial value. The complete call is: `reduce(mult,range(1,n),1)`.
+For factorial, the accumulating function is the multiplication. Thus, we have our first argument and can write `reduce(mult,?,?)`. We suppose here that we have a `mult` function at hand. We found that the accumulated collection is `range(1,n)`, so we can fill in the second argument:  `reduce(mult,range(1,n),?)`. We just need the start value to complete our call. It's of course 1 for factorial, but you can also find it by searching the accumulator variable in the imperative version and lookup its initial value. The complete call is: `reduce(mult,range(1,n),1)`.
 
 Here is the full function factorial function:
 ```python
@@ -61,17 +63,21 @@ def factorial(n):
 fact10 = factorial(10) 
 ```
 
-Let's ignore the imports for a moment and study the `reduce` call. So, the call `reduce(mult,range(1,n),1)` says: "I want to accumulate over the values from 1 to n, starting with an accumulated value of 1 and by multiplying the current accumulated value with the current item." You might think that calls to reduce are abstract and hard to understand, but it is really a matter practice. 
+Let's now analyse the two import calls that we used in the functional factorial. Starting from Python 3, you must import `reduce` from the `functools` module. In Python 2, reduce was a built-in function and was always available. Even if `reduce` is not a built-in function per-se, we cannot skip it ; we would loose a whole part of the functional programming fun. `reduces` is really the buddy of `map` and `filter`. See for example the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) of Google.
 
-A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
+Next, we import the `mult` function from the `operator` module. This module contains many utility functions which are particularly useful with higher order functions. They spare you from writing small lambda functions for common operations, such as arithmetic operations, boolean operations, attribute access...   
+
+## Some subjective functional programming advocacy
+
+Of course you do not need to always write the imperative version and convert it to the functional version. However, taking a piece of existing code and trying to make it functional is a good exercise. You can apply the same method we used for factorial: (1) identify the collection ; (2) does the code rely on one of our two the functional patterns ? ; (3) which function will you use ? After some time and with practice, you will start to think functionally and skip the imperative version. 
+
+A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's see how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This is our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
 
 If you compare the two versions of factorial, you will see that `reduce:
  1. gives us a more compact code, without sacrifying readability;
  1. is less error prone, because it does not rely on an intermediate variable that you have to declare, initialize and maintain in the for loop. 
 
-We can now come back to the two import calls. Starting from Python 3, you must import `reduce` from the `functools` module. In Python 2, reduce was a built-in function and was always available. Even if `reduce` is not a built-in function per-se anymore, we cannot skip it ; we would loose a whole part of the functional programming fun. `reduces` is really the buddy of `map` and `filter`. See for example the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) of Google.
-
-Next, we import the `mult` function from the `operator` module. This module contains many utility functions which are particularly useful with higher order functions. They spare you from writing small lambda functions for common operations, such as arithmetic operations, boolean operations, attribute access...   
+## Please, stay in readable code territory
 
 `reduce` really shines if you can avoid defining a `lambda`. Without the `operator` module we would write:
 ```python
@@ -80,9 +86,7 @@ from functools import reduce
 def factorial(n):
 	return reduce(lambda accValue,curItem:accValue*curItem,range(1,n),1)
 ``` 
-This version is arguably not very readable and should be avoided.
-
-In that case, I would advise to skip the `lambda` function, and to define the `mult` function yourself:
+This version is arguably not very readable and should be avoided. In that case, I would advise to skip the `lambda` function and to define the `mult` function yourself:
 ```python
 from functools import reduce
 
