@@ -1,5 +1,9 @@
 We now come back to higher order functions. I will present `map`, `filter` and `reduce`. Like `sorted`, these functions take a function and an iterator as parameters. 
 
+When we work with collections, two very common programming patterns emerge: 
+ * *iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map` and `filter` fall into this category.
+ * *iterating a collection and accumulating intermediate results to build a single value.* `any`, `all` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 3 functions. As an exercise, you will use `reduce` to write your own version of `any`, `all` and `sum`.  
+ 
 # Converting the items of a collection with `map`.
 
 `map` creates a new collection by applying a function to each item of the source collection. To get the 10 first even numbers, with `map` you can write: `evens = map(lambda n: n*2, range(10))`.
@@ -24,21 +28,29 @@ Like `map`, most of the time you can replace a call to `filter` by a generator e
 
 # Aggregating a collections to a single value with `reduce`
 
-When we work with collections, two very common programming patterns emerge: 
- * *iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map` and `filter` fall into this category.
- * *iterating a collection and accumulating intermediate results to build a single value.* For example, to calculate factorial(10): (1) the accumulated value starts at 1; (2) you will iterate through the list `[1,...,10]`; (3) at each iteration the accumulated value is multiplied by the current item.   
- 
- In an imperative manner, you would compute factorial(10) in the following way: 
+In this section we will study `reduce`, and we will also try learn some functional thinking: how can we convert imperative code to functional code. We will rely on the factorial function as our supporting example.
+
+In an imperative manner, you would compute factorial(10) in the following way: 
 ```python
 def factorial(n):
     fact = 1
-	for n in range(1,10):
-      fact = fact*n
+    for currentValue in range(1,n):
+      fact = fact*currentValue
     return fact
 fact10 = factorial(10) 
 ```
 
-In a functional manner, you would compute factorial(10) in the following way:
+So, how do we rewrite this function in a functional style ? We saw that functional programming relies on collections. Here Python is easy with us, since the for loop goes through an iterator. For `factorial`, the handled collection is `range(1,n)`, which represent all the numbers we want to multiply. Next, we see that the imperative factorial function returns a single value, so we can probably implement it with our second programming pattern: it processes a collection and returns a single value. Now, we see that the `fact` variable is used as an accumulator: at each iteration it is multiplied by the current item. This clearly corresponds to our second kind programming pattern, so we should be able to replace the body of `factorial` by a call to `reduce`.  
+
+`reduce` takes 3 arguments: 
+ 1. an accumulating function which takes 2 arguments : (1) the current accumulated value; (2) the current item. It return the final accumulated value.
+ 1. an iterator which contains the values to be accumulated;
+ 1. an initial value for the accumulated value.
+`reduce` returns the final accumulated value.   
+
+For factorial the accumulating function is the multiplication. We have the first argument and can write `reduce(mult,?,?)`. We suppose here that we have a `mult` function defined and available. We found that the accumulated collection is `range(1,n)`, so we can fill in the second argument:  `reduce(mult,range(1,n),?)`. We just need the start value to complete our call. It's of course 1 for factorial, but you can also find it by searching the accumulator variable in the imperative version and lookup its initial value. The complete call is: `reduce(mult,range(1,n),1)`.
+
+Here is the full function factorial function:
 ```python
 from functools import reduce
 from operator import mult
@@ -49,13 +61,9 @@ def factorial(n):
 fact10 = factorial(10) 
 ```
 
-Let's ignore the imports for a moment and study the `reduce` call.  `reduce` takes 3 arguments: 
- 1. an accumulating function which takes 2 arguments : (1) the current accumulated value; (2) the current item. It return the final accumulated value.
- 1. an iterator;
- 1. an initial value for the accumulated value.
-`reduce` returns the final accumulated value.
+Let's ignore the imports for a moment and study the `reduce` call. So, the call `reduce(mult,range(1,n),1)` says: "I want to accumulate over the values from 1 to n, starting with an accumulated value of 1 and by multiplying the current accumulated value with the current item." You might think that calls to reduce are abstract and hard to understand, but it is really a matter practice. 
 
-So, the call `reduce(mult,range(1,n),1)` says: "I want to accumulate over the values from 1 to n, starting with an accumulated value of 1 and by multiplying the current accumulated value with the current item." You might think that calls to reduce are abstract and hard to understand, but it is really a matter practice. A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
+A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
 
 If you compare the two versions of factorial, you will see that `reduce:
  1. gives us a more compact code, without sacrifying readability;
