@@ -84,13 +84,13 @@ If you compare the two versions of factorial, you will see that `reduce:
 from functools import reduce
 
 def factorial(n):
-	return reduce(lambda accValue,curItem:accValue*curItem,range(1,n),1)
+    return reduce(lambda accValue,curItem:accValue*curItem,range(1,n),1)
 ``` 
 This version is arguably not very readable and should be avoided. In that case, I would advise to skip the `lambda` function and to define the `mult` function yourself:
 ```python
 from functools import reduce
 
 def factorial(n):
-	def mult(a,b): return a*b
-	return reduce(mult,range(1,n),1)
+    def mult(a,b): return a*b
+    return reduce(mult,range(1,n),1)
 ``` 
