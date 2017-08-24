@@ -94,3 +94,5 @@ def factorial(n):
     def mult(a,b): return a*b
     return reduce(mult,range(1,n),1)
 ``` 
+
+@[Luke, how many stars are there in these galaxies?]({"stubs": ["universe.py"], "command": "python3 test_universe.py"})
