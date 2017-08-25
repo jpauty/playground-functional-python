@@ -1,6 +1,3 @@
 def reduce(accumulatingFunction,valueIter,startValue):
-    s = startValue
-    for v in valueIter:
-        s = accumulatingFunction(s,v)
-    return s
-    #raise NotImplementedError
+    # Replace the following line by your version of reduce
+    raise NotImplementedError

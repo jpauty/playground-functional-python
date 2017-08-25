@@ -95,4 +95,6 @@ def factorial(n):
     return reduce(mult,range(1,n),1)
 ``` 
 
-@[Luke, how many stars are there in these galaxies?]({"stubs": ["reduce.py"], "command": "python3 test_reduce.py"})
+@[Implement your own version of reduce]({"stubs": ["reduce.py"], "command": "python3 testReduce.py"})
+
+@[Implement your own version of reduce]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
