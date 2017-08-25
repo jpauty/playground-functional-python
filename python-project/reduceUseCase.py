@@ -1,12 +1,12 @@
-import builtins
+from functools import reduce
 def all(valueIter):
     # Replace the following line by your version of all
-    raise NotImplementedError
+    return reduce(...)
 
 def any(valueIter):
     # Replace the following line by your version of any
-    raise NotImplementedError
+    return reduce(...)
 
 def sum(valueIter):
     # Replace the following line by your version of sum
-    raise NotImplementedError
+    return reduce(...)

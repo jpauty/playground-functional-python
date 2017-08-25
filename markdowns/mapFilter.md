@@ -95,6 +95,8 @@ def factorial(n):
     return reduce(mult,range(1,n),1)
 ``` 
 
+# Hands on session
+
 @[Implement your own version of reduce]({"stubs": ["reduce.py"], "command": "python3 testReduce.py"})
 
-@[Implement your own version of reduce]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
+@[Use reduce to implement your own version of any, all and sum]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
