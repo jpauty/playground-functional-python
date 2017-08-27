@@ -8,7 +8,7 @@ def _sortedWithCmp(values,cmpFunc):
     if len(values) < 2: 
         return values
     else:
-        return merge(sorted(values[0:len(values)//2]), sorted(values[len(values)//2:]), cmpFunc)
+        return merge(sortedWithCmp(values[0:len(values)//2]), sortedWithCmp(values[len(values)//2:]), cmpFunc)
     
 def _merge(left,right,cmpFunc):
     leftIndex,rightIndex = 0,0
