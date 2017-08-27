@@ -46,5 +46,15 @@ Don't be afraid by the lambda keyword. Here, it just means: "I'm defining a func
 
 # Hands on session
 
-@[Implement sortedWithKey]({"stubs": ["sortedWithKey.py"], "command": "python3 testSortedWithKey.py"})
+Now that you know what is a higher order function, it's time for you to write your first one. 
+
+In this first exercise, you are asked to complete the `sortedWithCmp` function. `sortedWithCmp` sorts the `values` list and returns it. Sorting is not done in place, a new list is returned. `cmpFunc`, the second argument, is a comparison functions which takes two arguments. If the first one is greater than the second one, it returns `True`. Otherwise, it returns `False`. Right now this comparison function is not yet used by `sortedWithCmp` ; it uses the default comparison operation of Python. You have to modify the code of `sortedWithCmp` so that it uses `cmpFunc` to compare the elements.
+
+`sortedWithCmp` is based on [merge sort](https://en.wikipedia.org/wiki/Merge_sort). If your unfamiliar with this algorithm, the main point for this exercise is to know that it relies on a comparison and that is where you have to operate. In any case, I encourage you to discover the algorithm, it's simple and efficient ; a good introduction to recursive algorithms.
+
 @[Implement sortedWithCmp]({"stubs": ["sortedWithCmp.py"], "command": "python3 testSortedWithCmp.py"})
+
+For this second exercise, you have again to modify merge sort, but this time you will add support for a key function. This is to obtain a similar behavior as the built-in sorted function. The exercise contains a sorted function which is a raw merge sort, with just the list to be sorted as the single argument. You have to implement the `sortedWithKey` function which takes two arguments: (1) the list of values to sort; (2) a function which returns a key for each value. Values are sorted with respect to their key. 
+
+@[Implement sortedWithKey]({"stubs": ["sortedWithKey.py"], "command": "python3 testSortedWithKey.py"})
+
