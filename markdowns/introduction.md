@@ -44,4 +44,7 @@ sortedChests = sorted(chestList,key=getNumCoins)
 Writing a separated function each time you want to sort a collection is not very practical, especially if this function will only be used by sorted. For such situations, Python offers the `lambda` keyword, which enables you to define a function on the fly: `sorted(chestList, key=lambda chest:chest.numCoins)`.   
 Don't be afraid by the lambda keyword. Here, it just means: "I'm defining a function which takes a single argument `chest` and returns the value of the expression `chest.numCoins`. The body of lambda function is defined after the column and must be a single expression. The returned value is the value of this expression. Python uses the keyword `lambda` as a reference to Lambda calculus, the grand father of functional programming.
 
+# Hands on session
 
+@[Implement sortedWithKey]({"stubs": ["sortedWithKey.py"], "command": "python3 testSortedWithKey.py"})
+@[Implement sortedWithCmp]({"stubs": ["sortedWithCmp.py"], "command": "python3 testSortedWithCmp.py"})
