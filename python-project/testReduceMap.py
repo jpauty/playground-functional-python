@@ -1,4 +1,4 @@
-from reduce import reduce,map
+from reduceMap import reduce,map
 from operator import add,mul
 
 def send_msg(channel, msg):
