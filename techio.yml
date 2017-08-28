@@ -6,8 +6,8 @@ plan:
     statement: markdowns/introduction.md # Set the file path to the page content
   - title: "Working with collections" # Set the page title
     statement: markdowns/collections.md # Set the file path to the page content
-  - title: "Built-in higher order functions: filter, map" # Set the page title
-    statement: markdowns/mapFilter.md # Set the file path to the page content
+  - title: "Built-in higher order functions: filter, map and reduce" # Set the page title
+    statement: markdowns/higherOrder.md # Set the file path to the page content
   
 
 

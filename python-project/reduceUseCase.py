@@ -10,3 +10,11 @@ def any(valueIter):
 def sum(valueIter):
     # Replace the following line by your version of sum
     return reduce(...)
+
+def max(valueIter):
+    # Replace the following line by your version of max
+    return reduce(...)
+
+def min(valueIter):
+    # Replace the following line by your version of min
+    return reduce(...)

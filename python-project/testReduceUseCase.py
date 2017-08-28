@@ -1,4 +1,4 @@
-from reduceUseCase import all, any, sum
+from reduceUseCase import all, any, sum, min, max
 from operator import add, mul
 import builtins
 
@@ -28,6 +28,10 @@ def testReduce():
         sum1 = sum(range(10))
         expectedSum1 = builtins.sum(range(10))
         assert sum1 == expectedSum1, "Running sum(range(10)) ... Expected %s, got %s"%(expectedSum1,sum1)
+        max1 = max([1,23,456,5,67])
+        assert max1 == 456, "Running max([1,23,456,5,67]) ... Expected 456, got %s"%max1
+        min1 = min([1,23,456,5,67])
+        assert min1 == 1, "Running min([1,23,456,5,67]) ... Expected 1, got %s"%min1
         success()
 
         send_msg("You're a functional rookie 🌟", "You successfully implement any, all and sum.")

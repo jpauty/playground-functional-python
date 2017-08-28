@@ -1,8 +1,8 @@
 We now come back to higher order functions. I will present `map`, `filter` and `reduce`. Like `sorted`, these functions take a function and an iterator as parameters. 
 
 When we work with collections, two very common programming patterns emerge: 
- * *iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map` and `filter` fall into this category.
- * *iterating a collection and accumulating intermediate results to build a single value.* `any`, `all` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 3 functions. As an exercise, you will use `reduce` to write your own version of `any`, `all` and `sum`.  
+ 1. *iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map`, `filter` and `sorted` fall into this category.
+ 2. *iterating a collection and accumulating intermediate results to build a single value.* `any`, `all`, `min`, `max` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 5 functions. As an exercise, you will use `reduce` to write your own version of these functions.  
  
 # Converting the items of a collection with `map`.
 
@@ -97,6 +97,8 @@ def factorial(n):
 
 # Hands on session
 
-@[Implement your own version of reduce]({"stubs": ["reduce.py"], "command": "python3 testReduce.py"})
+`reduce` and `map` are so fundamental to functional programming that you cannot avoid coding your own version. So this is your time!
+
+@[Implement your own version of `reduce` and `map`]({"stubs": ["reduce.py"], "command": "python3 testReduce.py"})
 
 @[Use reduce to implement your own version of any, all and sum]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
