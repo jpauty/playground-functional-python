@@ -99,6 +99,6 @@ def factorial(n):
 
 `reduce` and `map` are so fundamental to functional programming that you cannot avoid coding your own version. So this is your time!
 
-@[Implement your own version of `reduce` and `map`]({"stubs": ["reduce.py"], "command": "python3 testReduce.py"})
+@[Implement your own version of `reduce` and `map`]({"stubs": ["reduceMap.py"], "command": "python3 testReduceMap.py"})
 
 @[Use reduce to implement your own version of any, all and sum]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
