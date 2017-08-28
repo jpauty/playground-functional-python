@@ -24,7 +24,7 @@ def testReduce():
         assert accList == [1,2,3,4], "Running reduceMap(add,[[1,2],[3,4]],[]).. Expected [1,2,3,4], got {}".format(accList)
         success()
 
-        send_msg("You're a functional rookie 🌟", "You successfully implemented reduceMap.")
+        send_msg("You're a functional rookie 🌟", "You successfully implemented reduce and map.")
         
     except AssertionError as e:
         fail()
