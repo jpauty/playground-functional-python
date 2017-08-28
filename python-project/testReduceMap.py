@@ -12,7 +12,7 @@ def fail():
     
 def testReduce():
     try:
-        map1 = map(lambda x: x*x, [1,2,3])
+        map1 = map(lambda x: x*2, [1,2,3])
         assert map1 == [2,4,6], "Running map(lambda x: x*x, [1,2,3])... Expected [2,4,6], got {}".format(map1)
         map2 = map(str, [1,2,3])
         assert map2 == ["1","2","3"], "Running map(lambda x: x*x, [1,2,3])... Expected ['1','2','3'], got {}".format(map2)
