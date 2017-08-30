@@ -99,6 +99,8 @@ def factorial(n):
 
 `reduce` and `map` are so fundamental to functional programming that you cannot avoid coding your own version. So this is your time!
 
-@[Implement your own version of `reduce` and `map`]({"stubs": ["reduceMap.py"], "command": "python3 testReduceMap.py"})
+@[Implement your own version of reduce and map]({"stubs": ["reduceMap.py"], "command": "python3 testReduceMap.py"})
 
-@[Use reduce to implement your own version of any, all and sum]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
+The next exercise will illustrate how general `reduce` is. You have now to implement `any`, `all`, `sum`, `min` and `max` by calling reduce. For the sake of simplicity, you can consider that `max` and `min` receive a list of int comprised between 0 and 1000.
+
+@[Use reduce to implement your own version of any, all, sum min and max]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})

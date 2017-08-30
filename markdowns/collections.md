@@ -88,6 +88,11 @@ Here is another nice use case for `zip`. Consider the list `path=['A','B','C','D
 
 Note that `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
 
+In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
+
+@[Implement the pairs and evenOdd functions]({"stubs": ["rangeZip.py"], "command": "python3 testRangeZip.py"})
+
+
 # Reducing functions: `sum`, `min` and `max`
 
 In functional programming terminology, reducing a collection means iterating the collection in order to create a single value. `sum`, `min` and `max` all work on number collections, but with generator expressions their scope is much wider. For example:
