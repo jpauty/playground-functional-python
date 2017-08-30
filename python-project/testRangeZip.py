@@ -13,7 +13,6 @@ def testEvenOdd():
     try:
         pairs1 = list(pairs(3))
         assert pairs1 == [(0,1),(1,2),(2,3)], """Running pairs(3)... Expected [(0,1),(1,2),(2,3)], got {}""".format(pairs1)
-        success()
         
         evenOdd1 = list(evenOdd(3))
         assert evenOdd1 == [(0,1),(2,3),(4,5)], """Running evenOdd(3)... Expected [(0,1),(2,3),(4,5)], got {}""".format(evenOdd1)
