@@ -1,8 +1,8 @@
 We now come back to higher order functions. I will present `map`, `filter` and `reduce`. Like `sorted`, these functions take a function and an iterator as parameters. 
 
 When we work with collections, two very common programming patterns emerge: 
- 1. *iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map`, `filter` and `sorted` fall into this category.
- 2. *iterating a collection and accumulating intermediate results to build a single value.* `any`, `all`, `min`, `max` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 5 functions. As an exercise, you will use `reduce` to write your own version of these functions.  
+ 1. <a name="firstPattern"></a>*iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map`, `filter` and `sorted` fall into this category.
+ 2. <a name="secondPattern"></a>*iterating a collection and accumulating intermediate results to build a single value.* `any`, `all`, `min`, `max` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 5 functions. As an exercise, you will use `reduce` to write your own version of these functions.  
  
 # Converting the items of a collection with `map`.
 
@@ -42,7 +42,7 @@ def factorial(n):
 fact10 = factorial(10) 
 ```
 
-So, how do we rewrite this function in a functional style ? We saw that functional programming relies on collections. Here Python is easy with us, since the for loop goes through an iterator. For `factorial`, the handled collection is `range(1,n)`, which represent all the numbers we want to multiply. Next, we see that the imperative factorial function returns a single value, so we can probably implement it with our second programming pattern: it processes a collection and returns a single value. Now, we see that the `fact` variable is used as an accumulator: at each iteration it is multiplied by the current item. This clearly corresponds to our second kind programming pattern, so we should be able to replace the body of `factorial` by a call to `reduce`.  
+So, how do we rewrite this function in a functional style ? We saw that functional programming relies on collections. Here Python is easy with us, since the for loop goes through an iterator. For `factorial`, the handled collection is `range(1,n)`, which represent all the numbers we want to multiply. Next, we see that the imperative factorial function returns a single value, so we can probably implement it with our [second programming pattern](#secondPattern): it processes a collection and returns a single value. Now, we see that the `fact` variable is used as an accumulator: at each iteration it is multiplied by the current item. This clearly corresponds to the second kind programming pattern, so we should be able to replace the body of `factorial` by a call to `reduce`.  
 
 `reduce` takes 3 arguments: 
  1. an accumulating function which takes 2 arguments : (1) the current accumulated value; (2) the current item. It return the final accumulated value.
@@ -69,7 +69,7 @@ Next, we import the `mult` function from the `operator` module. This module cont
 
 ## Some subjective functional programming advocacy
 
-Of course you do not need to always write the imperative version and convert it to the functional version. However, taking a piece of existing code and trying to make it functional is a good exercise. You can apply the same method we used for factorial: (1) identify the collection ; (2) does the code rely on one of our two the functional patterns ? ; (3) which function will you use ? After some time and with practice, you will start to think functionally and skip the imperative version. 
+Of course you do not need to always write the imperative version and convert it to the functional version. However, taking a piece of existing code and trying to make it functional is a good exercise. You can apply the same method we used for factorial: (1) identify the collection ; (2) does the code rely on one of our two the [functional patterns](#firstPattern) ? ; (3) which function will you use ? After some time and with practice, you will start to think functionally and skip the imperative version. 
 
 A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's see how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This is our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
 

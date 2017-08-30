@@ -18,7 +18,7 @@ def testEvenOdd():
         assert evenOdd1 == [(0,1),(2,3),(4,5)], """Running evenOdd(3)... Expected [(0,1),(2,3),(4,5)], got {}""".format(evenOdd1)
         success()
 
-        send_msg("You're a functional rookie 🌟", "You successfully implemented evenOdd.")
+        send_msg("You're a functional rookie 🌟", "You successfully implemented pairs and evenOdd.")
         
     except AssertionError as e:
         fail()
