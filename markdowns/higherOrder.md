@@ -20,9 +20,9 @@ wealthGen = sum(chest.getNumCoins() for chest in myChests)
 
 # Filtering collections with `filter`
 
- `filter` applies a function to each item of the source collection and create a new one by keeping the items for which this function returns true.
+ `filter` applies a function to each item of the source collection and creates a new one by keeping the items for which this function returns true.
 
-Again, to get the 10 first even numbers, with `map` you can write: `evens = filter(lambda n: n%2==0, range(20))`.
+Again, to get the 10 first even numbers, with `filter` you can write: `evens = filter(lambda n: n%2==0, range(20))`.
 
 Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`.  
 

@@ -50,6 +50,10 @@ The call to `all` uses a generator expression. When you pass a generator express
 
 `any` and `all` are efficient, because they will stop the evaluation as soon as possible. `any` stops on the first true item. Conversely, `all` stops on the first false item. 
 
+In the following exercise, you have to convert the code of `hasEven` by removing the loop and by using `any` or `all`. You will probably also need to use a generator expression.
+
+@[Remove the loop and replace by a call to any or all]({"stubs": ["anyAll.py"], "command": "python3 testAnyAll.py"})
+
 # Combined iterations with `zip`
 
 With `zip` you can iterate several iterators at the same time. For example :
@@ -91,7 +95,6 @@ Note that `zip` is not limited to 2 iterators and works with an arbitrary number
 In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
 
 @[Implement the pairs and evenOdd functions]({"stubs": ["rangeZip.py"], "command": "python3 testRangeZip.py"})
-
 
 # Reducing functions: `sum`, `min` and `max`
 
