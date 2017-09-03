@@ -13,7 +13,9 @@ To create a generator expression, simply replace the surrounding brackets by bra
 
 # Tests on collections with `any` and `all`
 
-`any` and `all` have a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
+We start with two very useful functions: `any` and `all`. They deserve a greater fame, because they enable compact and readable code.   
+
+`any` and `all` take a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
 
 ```python
 any([True,False,False]) # True
@@ -52,22 +54,40 @@ The call to `all` uses a generator expression. When you pass a generator express
 
 In the following exercise, you have to convert the code of `hasEven` by removing the loop and by using `any` or `all`. You will probably also need to use a generator expression.
 
-@[Remove the loop and replace by a call to any or all]({"stubs": ["anyAll.py"], "command": "python3 testAnyAll.py"})
+@[Remove the loop and replace it by a call to any or all]({"stubs": ["anyAll.py"], "command": "python3 testAnyAll.py"})
 
 # Combined iterations with `zip`
 
-With `zip` you can iterate several iterators at the same time. For example :
+We now come to `zip`. With `zip` you can iterate several iterators at the same time. `list(zip([1,2,3],['a','b','c'])) == [(1,'a'),(2,'b'),(3,'c')]`. `zip` returns an iterator, so I made a `list` call in the previous expression for the sake of accuracy. `zip` works with iterators of different length. It stops at the end of the shortest iterator, so the length of the returned iterator is the length of the shortest parameter.  
+
+The name zip is a bit confusing ; it has nothing to do with data compression. It refers to the ubiquitous fastener. A zipper takes two rows of teeth and binds the corresponding teeth. In a somewhat similar way, the `zip` function takes two lists and bind their items into pairs.   
+
+At first glance, the use cases for `zip` seem less easy to find than for `any` or `all`. Nevertheless, `zip` comes in handy in many situations. Let's look at some examples. `zip` can be used to combine time series. Consider that you have two temperature sensors in a room, each one taking a measure every minute. At the end of the day, you have two lists of temperatures and you would like to build the list of mean temperatures.  
 
 ```python
-destinations = buildNextDestinations()
-for character, destination in zip(characterList, destinations):
-    character.moveTo(destination)
+dayMeanTemperatures = [] # will contain the mean temperature for today
+# dayTemperatures is a method of Sensor which returns the list of temperatures for the current day
+for temp1 temp2 in zip(sensor1.dayTemperatures(), sensor2.dayTemperatures()):
+	dayMeanTemperatures.append((temp1 + temp2) / 2)
+```
+`zip` can be used with an arbitrary number of iterators, so this example can be generalized to more than two sensors.
+
+Let's come back to a game oriented scenario. Consider the list `path=['A','B','C','D']` representing an ordered sequence, for example a path returned by a path finding algorithm. We would like to build the list of the edges which compose this path: `[(A,B),(B,C),(C,D)]`. This suspiciously looks like the result of a `zip` call, but can we use `zip` to build it ? If we take the first items of the pairs we get `[A,B,C]` and the second items give use `[B,C,D]`. So, we can write `zip(path[:-1],path[1:])`. Since `zip` stops at the end of the shorter iterator, we finally have:  
+
+```python
+path=['A','B','C','D']
+edges = zip(path,path[1:])
 ```
 
-The length of the returned iterator is the length of the shortest parameter. If you prefer : `zipLen = min(map(len,zipParams))`.  
+A last example for the mathematically oriented readers. With `zip`, you can calculate the [dot product](https://en.wikipedia.org/wiki/Dot_product) of two vectors: 
+```python
+# vector1 and vector2 are two lists representing two vectors
+dotProduct = 0
+for v1Value, v2Value in zip(vector1,vector2):
+    dotProduct += v1Value * v2Value
+```
 
 Often, when you iterate a collection you need the index of the current item. With `zip` you can write: 
-
 ```python
 for index,character in zip(characterList,range(len(characterList)):
     doSomethingWithIndexAndCharater()
@@ -87,10 +107,8 @@ Actually, this pattern is so common that Python comes with a built-in function j
 for index,character in enumerate(characterList):
     doSomethingWithIndexAndCharater()
 ```
-
-Here is another nice use case for `zip`. Consider the list `path=['A','B','C','D']` representing an ordered sequence, for example a path returned by a path finding algorithm. You can easily build the edges of the path with: `zip(path,path[1:])`. This call will return an iterator containing the pairs: `(A,B)`,`(B,C)` and `(C,D)`. Since `path[1:]` has a length of 3, as expected, the result contains 3 pairs.   
-
-Note that `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
+ 
+As I said before, `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
 
 In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
 
