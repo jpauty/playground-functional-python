@@ -24,7 +24,7 @@ wealthGen = sum(chest.getNumCoins() for chest in myChests)
 
 Again, to get the 10 first even numbers, with `filter` you can write: `evens = filter(lambda n: n%2==0, range(20))`.
 
-Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`.  
+Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`. But, if you have the filtering function at hand, `filter` give very readable code: `evens = filter(isEven,range(20))`.  
 
 # Aggregating a collections to a single value with `reduce`
 

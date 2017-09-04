@@ -60,7 +60,7 @@ In the following exercise, you have to convert the code of `hasEven` by removing
 
 We now come to `zip`. With `zip` you can iterate several iterators at the same time. `list(zip([1,2,3],['a','b','c'])) == [(1,'a'),(2,'b'),(3,'c')]`. `zip` returns an iterator, so I made a `list` call in the previous expression for the sake of accuracy. `zip` works with iterators of different length. It stops at the end of the shortest iterator, so the length of the returned iterator is the length of the shortest parameter.  
 
-The name zip is a bit confusing ; it has nothing to do with data compression. It refers to the ubiquitous fastener. A zipper takes two rows of teeth and binds the corresponding teeth. In a somewhat similar way, the `zip` function takes two lists and bind their items into pairs.   
+The name zip is a bit confusing ; it has nothing to do with data compression. It refers to the ubiquitous fastener. A zipper takes two rows of teeth and binds the corresponding teeth. In a somewhat similar way, the `zip` function takes two lists and binds their items into pairs.   
 
 ## `zip` at work
 

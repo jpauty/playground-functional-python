@@ -8,6 +8,8 @@ plan:
     statement: markdowns/collections.md # Set the file path to the page content
   - title: "Built-in higher order functions: filter, map and reduce" # Set the page title
     statement: markdowns/higherOrder.md # Set the file path to the page content
+  - title: "Functional first aid kit" # Set the page title
+    statement: markdowns/aidKit.md # Set the file path to the page content
   
 
 
