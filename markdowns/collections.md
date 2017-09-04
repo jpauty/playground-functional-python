@@ -62,6 +62,8 @@ We now come to `zip`. With `zip` you can iterate several iterators at the same t
 
 The name zip is a bit confusing ; it has nothing to do with data compression. It refers to the ubiquitous fastener. A zipper takes two rows of teeth and binds the corresponding teeth. In a somewhat similar way, the `zip` function takes two lists and bind their items into pairs.   
 
+## `zip` at work
+
 At first glance, the use cases for `zip` seem less easy to find than for `any` or `all`. Nevertheless, `zip` comes in handy in many situations. Let's look at some examples. `zip` can be used to combine time series. Consider that you have two temperature sensors in a room, each one taking a measure every minute. At the end of the day, you have two lists of temperatures and you would like to build the list of mean temperatures.  
 
 ```python
@@ -86,15 +88,22 @@ dotProduct = 0
 for v1Value, v2Value in zip(vector1,vector2):
     dotProduct += v1Value * v2Value
 ```
+ 
+As I said before, `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
 
-Often, when you iterate a collection you need the index of the current item. With `zip` you can write: 
+
+## Hands on session
+
+In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
+
+@[Implement the pairs and evenOdd functions]({"stubs": ["rangeZip.py"], "command": "python3 testRangeZip.py"})
+
+The `enumerate` function iterates through a collection a yields the index and the item at the same time. With `enumerate` you can write: 
 ```python
 for index,character in zip(characterList,range(len(characterList)):
     doSomethingWithIndexAndCharater()
 ```
-
 instead of the more error prone:
-
 ```python
 index = 0
 for character in characterList:
@@ -102,17 +111,8 @@ for character in characterList:
     index += 1
 ```
 
-Actually, this pattern is so common that Python comes with a built-in function just for that: `enumerate`.
-```python
-for index,character in enumerate(characterList):
-    doSomethingWithIndexAndCharater()
-```
- 
-As I said before, `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
+The goal of the next exercise is to implement `enumerate` with `zip`. 
 
-In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
-
-@[Implement the pairs and evenOdd functions]({"stubs": ["rangeZip.py"], "command": "python3 testRangeZip.py"})
 
 # Reducing functions: `sum`, `min` and `max`
 
