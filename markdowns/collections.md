@@ -100,7 +100,7 @@ In the following exercise you have to implement the `pairs` and `evenOdd` functi
 
 The `enumerate` function iterates through a collection a yields the index and the item at the same time. With `enumerate` you can write: 
 ```python
-for index,character in zip(characterList,range(len(characterList)):
+for index,character in enumerate(characterList):
     doSomethingWithIndexAndCharater()
 ```
 instead of the more error prone:
@@ -113,6 +113,7 @@ for character in characterList:
 
 The goal of the next exercise is to implement `enumerate` with `zip`. 
 
+@[Implement the enumerate function]({"stubs": ["enumerateZip.py"], "command": "python3 testEnumerateZip.py"})
 
 # Reducing functions: `sum`, `min` and `max`
 
