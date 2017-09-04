@@ -81,7 +81,7 @@ path=['A','B','C','D']
 edges = zip(path,path[1:])
 ```
 
-A last example for the mathematically oriented readers. With `zip`, you can calculate the [dot product](https://en.wikipedia.org/wiki/Dot_product) of two vectors: 
+<a name="dotProduct">A last example for the mathematically oriented readers. With `zip`, you can calculate the [dot product](https://en.wikipedia.org/wiki/Dot_product) of two vectors: 
 ```python
 # vector1 and vector2 are two lists representing two vectors
 dotProduct = 0
