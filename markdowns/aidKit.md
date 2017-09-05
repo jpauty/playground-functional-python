@@ -2,7 +2,7 @@ Hi there, please describe your symptoms and we'll try to find the cure !
 
 # My code takes an iterator and generates another iterator
 
-Right, I see. Our case probably belongs to the [first programming pattern](/markdowns/higherOrder.md#firstPattern).
+Right, I see. Our case probably belongs to the [first programming pattern](/markdowns/higherOrder.md).
 
 ## I want to remove unneeded items from the collection
 
