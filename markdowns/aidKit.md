@@ -2,7 +2,7 @@ Hi there, please describe your symptoms and we'll try to find the cure !
 
 # My code takes an iterator and generates another iterator
 
-Right, I see. Our case probably belongs to the [first programming pattern](built-in-higher-order-functions-filter-map-and-reduce#firstPattern).
+Right, I see. Our case probably belongs to the [first programming pattern](/markdowns/higherOrder.md#firstPattern).
 
 ## I want to remove unneeded items from the collection
 
@@ -22,11 +22,11 @@ Right, `zip` is a good candidate.
 
 ## I would like to combine several collections and create a new one
 
-`zip` comes again to the rescue. You'll probably want to combine it with a generator expression. See our [dot product example](working-with-collections#dotProduct)
+`zip` comes again to the rescue. You'll probably want to combine it with a generator expression. See our [dot product example](/markdowns/collections.md#dotProduct)
 
 # My code takes an iterator and generates a single value
 
-Just a moment. Yes, we'll probably heal you with the [first programming pattern](built-in-higher-order-functions-filter-map-and-reduce#secondPattern).
+Just a moment. Yes, we'll probably heal you with the [first programming pattern](/markdowns/higherOrder.md#secondPattern).
 
 ## I would like assess a property on the collection
 
@@ -39,3 +39,13 @@ If you're lucky, `sum`, `min`, `max` will do the job. Otherwise, have look to th
 ## I want to combine the collection's items with some random computation
 
 I have something for you, but you may not like it: `reduce`. It's our all-in-one medicine, in a way or another it should cure you !
+
+# I can't help creating classes and methods
+
+This is good. The goal is not to stop using OOP. OOP is good to architect your project, for programming in the large
+
+# I want to learn more !
+
+Here are some links:
+ * Python's [functional how-to](https://docs.python.org/3/howto/functional.html). It covers what we saw here, and much more functions. Especially the [functools module](https://docs.python.org/3/library/functools.html) which contains other useful function such as `repeat` or `product`.
+ 
