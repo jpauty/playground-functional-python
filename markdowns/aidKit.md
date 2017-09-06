@@ -1,4 +1,4 @@
-Hi there, I'm Dr. Curry. Please describe your symptoms and I'll try to find the cure!
+Hi there, I'm Dr. Fun. Please describe your symptoms and I'll try to find the cure!
 
 # I cannot find any place to use those fancy new functions I just discovered
 
@@ -62,6 +62,6 @@ This is good. The goal is not to stop using OOP. Like promoted by the [Scala pro
 I'm afraid you're developing an addition here. Good, this is very good! No need to cure you. Here are some learning resources that should fulfill your desire:
  * Python's [functional how-to](https://docs.python.org/3/howto/functional.html). It covers what we saw here, and much more functions. Especially the [functools module](https://docs.python.org/3/library/functools.html) which contains other useful functions such as `repeat` or `product`.
  * Learning a functional language such as [Ocaml](http://ocaml.org) or [Clojure](https://clojure.org/) is a good idea. Both are modern languages that are actively developed. There is also [Haskell](https://www.haskell.org/), but the road will be harder.  
- * If you really want to dive into functional programming the reference book "Structure and Interpretation of Computer Programs" by Abelson, Sussman, and Sussman is a full textbook on functional programming. It's based on lisp, but the concepts and algorithms are applicable anywhere. It's progressive, so you will not drown into braces. Even better, the book is freely [available online](https://github.com/sarabander/sicp).
+ * If you really want to dive into functional programming, the reference book "Structure and Interpretation of Computer Programs" by Abelson, Sussman, and Sussman is a full textbook on functional programming. It's based on lisp, but the concepts and algorithms are applicable anywhere. It's progressive, so you will not drown into braces. Even better, the book is freely [available online](https://github.com/sarabander/sicp).
 
  
