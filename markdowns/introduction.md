@@ -1,6 +1,6 @@
 # Welcome!
 
-This playground shows the useful, but lesser known, functional programming features of Python. Python is well known for its object oriented programming features: classes, methods, inheritance... However, Python is not restricted to object oriented programming, it offers several very useful features that enables the programmer to use the regular functional programming idioms, such as higher order functions and operations on data collections. These programming patterns are a useful addition to the arsenal of the regular Python developer.
+This playground shows the useful, but lesser known, functional programming features of Python. Python is well known for its object oriented programming features: classes, methods, inheritance... However, Python is not restricted to object oriented programming, it offers several very useful features that enables the programmer to use the regular functional programming idioms, such as higher order functions and operations on data collections. These programming patterns are a useful addition to the arsenal of the regular Python developer. Along the way, we will also learn some functional programming concepts and techniques.
 
 I suppose here that: (1) you have basic knowledge of object oriented programming; (2) you have written a couple of Python programs. If you don't know Python, but know Javascript or Ruby, you should be able to follow this lesson easily.
 
