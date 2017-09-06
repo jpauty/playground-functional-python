@@ -1,4 +1,4 @@
-Hi there, please describe your symptoms and we'll try to find the cure !
+Hi there, I'm Dr. Curry. Please describe your symptoms and I'll try to find the cure!
 
 # I cannot find any place to use those fancy new functions I just discovered
 
@@ -39,7 +39,7 @@ Right, `zip` is a good candidate.
 
 # My code takes an iterator and generates a single value
 
-Just a moment. Yes, we'll probably heal you with the [first programming pattern](/markdowns/higherOrder.md#secondPattern).
+Just a moment. Yes, we'll probably heal you with the [second programming pattern](/markdowns/higherOrder.md#secondPattern).
 
 ## I would like assess a property on the collection
 
@@ -55,13 +55,13 @@ I have something for you, but you may not like it: `reduce`. It's our all-in-one
 
 # I can't help creating classes and methods
 
-This is good. The goal is not to stop using OOP. Like promoted by the [Scala programmign language](http://scala-lang.org/), I would advocate to use OOP to architect your project with modules and classes, and to use functional programming for algorithms and manipulating data.
+This is good. The goal is not to stop using OOP. Like promoted by the [Scala programming language](http://scala-lang.org/), I would advocate to use OOP to architect your project with modules and classes, and to use functional programming for algorithms and manipulating data.
 
 # I want to learn more !
 
-Here are some learning possibilities:
+I'm afraid you're developing an addition here. Good, this is very good! No need to cure you. Here are some learning resources that should fulfill your desire:
  * Python's [functional how-to](https://docs.python.org/3/howto/functional.html). It covers what we saw here, and much more functions. Especially the [functools module](https://docs.python.org/3/library/functools.html) which contains other useful functions such as `repeat` or `product`.
  * Learning a functional language such as [Ocaml](http://ocaml.org) or [Clojure](https://clojure.org/) is a good idea. Both are modern languages that are actively developed. There is also [Haskell](https://www.haskell.org/), but the road will be harder.  
- * If you really want to dive into functional programming the reference book "Structure and Interpretation of Computer Programs" by Abelson, Sussman, and Sussman is a full course on functional programming. It's based on lisp, but the concepts and algorithms are applicable anywhere. It's progressive, so you will not drown into braces. The book is freely [available online](https://github.com/sarabander/sicp).
- * If you really want to dive into functional programming the reference book "Structure and Interpretation of Computer Programs" by Abelson, Sussman, and Sussman is a full course on functional programming. It's based on lisp, but the concepts and algorithms are applicable anywhere. It's progressive, so you will not drown into braces. The book is freely [available online](https://github.com/sarabander/sicp).
+ * If you really want to dive into functional programming the reference book "Structure and Interpretation of Computer Programs" by Abelson, Sussman, and Sussman is a full textbook on functional programming. It's based on lisp, but the concepts and algorithms are applicable anywhere. It's progressive, so you will not drown into braces. Even better, the book is freely [available online](https://github.com/sarabander/sicp).
+
  
