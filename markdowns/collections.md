@@ -3,19 +3,19 @@ Python comes with several useful built-in functions to work with collections. We
 
 # List comprehension and generator expressions
 
-List comprehension enables you to transform a list into another list. For example, to create the list of the first 10 even numbers, we transform the list `[0,..,9]` : `evens = [n*2 for n in range(10)]`. Starting from Python 3, `range` does not return a list but a generator. So, to be precise, here we transform a range into a list. 
+List comprehension enables you to transform a list into another list. For example, to create the list of the first 10 even numbers, we transform the list `[0,..,9]` : `evens = [n*2 for n in range(10)]`. Starting from Python 3, `range` does not return a list but a range object. So, to be precise, here we transform a range into a list. 
 
 By adding an `if` clause, list comprehension can also be used to filter the source list. Here is another way to create the list of the first 10 even numbers: `evens = [n for n in range(20) if n%2 == 0]`.   
 
-There are situations where the created list is only iterated once, typically in a for loop or as an argument of a function which expects an iterator. In these cases, you can use a generator expression instead of a list comprehension. A generator does not create the full list, but creates an iterator objects. The iterator expression is lazy, it will create the items on demand. When used in a for loop, a new item is generated at each iteration. A generator expression can possibly save a lot of memory and is more efficient. 
+There are situations where the created list is only iterated once, typically in a for loop or as an argument of a function which expects an iterator. In these cases, you can use a generator expression instead of a list comprehension. To create a generator expression, simply replace the surrounding brackets by braces: `evens = (n*2 for n in range(10))`. 
 
-To create a generator expression, simply replace the surrounding brackets by braces: `evens = (n*2 for n in range(10))`. A generator expression can only be iterated once and cannot be accessed by index. Nevertheless, there are many cases where they can be used instead of a list comprehension.
+A generator expression does not create the full list in memory, but creates an iterator objects. This iterator is lazy and will create the items on demand. When used in a for loop, a new item is generated at each iteration. A generator expression can possibly save a lot of memory and be more efficient. Generator expressions can only be iterated once and cannot be accessed by index. Nevertheless, there are many cases where they can be used instead of a list comprehension.
 
 # Tests on collections with `any` and `all`
 
 We start with two very useful functions: `any` and `all`. They deserve a greater fame, because they enable compact and readable code.   
 
-`any` and `all` take a single argument which must be a iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
+`any` and `all` take a single argument which must be an iterator, so they can handle lists, generator expressions, sets, dictionaries... `any` returns `True` if at least one element of the collection is true. Obviously, `all` returns `True` if all the elements of the collections are true. E.g. : 
 
 ```python
 any([True,False,False]) # True
@@ -48,17 +48,26 @@ if lost:
     lostGame()
 ```
 
-The call to `all` uses a generator expression. When you pass a generator expression to a single argument function, you can omit the surrounding braces.  
-
 `any` and `all` are efficient, because they will stop the evaluation as soon as possible. `any` stops on the first true item. Conversely, `all` stops on the first false item. 
 
 In the following exercise, you have to convert the code of `hasEven` by removing the loop and by using `any` or `all`. You will probably also need to use a generator expression.
 
 @[Remove the loop and replace it by a call to any or all]({"stubs": ["anyAll.py"], "command": "python3 testAnyAll.py"})
 
+# Reducing functions: `sum`, `min` and `max`
+
+In functional programming terminology, reducing a collection means iterating the collection in order to create a single value. `sum`, `min` and `max` process number collections, but with generator expressions their scope is much wider. For example:
+```python
+myScore = sum(chest.value for chest in chestList)
+opponentStrength = max(character.strength for character in opponentList)
+```
+The call to `sum` uses a generator expression. When you pass a generator expression to a single argument function, you can omit the surrounding braces.  
+
+`min` and `max` do not support empty collections and will raise a ValueError exception when they receive one. `sum` returns 0  for an empty collection.
+
 # Combined iterations with `zip`
 
-We now come to `zip`. With `zip` you can iterate several iterators at the same time. `list(zip([1,2,3],['a','b','c'])) == [(1,'a'),(2,'b'),(3,'c')]`. `zip` returns an iterator, so I made a `list` call in the previous expression for the sake of accuracy. `zip` works with iterators of different length. It stops at the end of the shortest iterator, so the length of the returned iterator is the length of the shortest parameter.  
+We now come to `zip`. With `zip` you can iterate several iterators at the same time. `list(zip([1,2,3],['a','b','c'])) == [(1,'a'),(2,'b'),(3,'c')]`. `zip` returns an iterator, so I made a `list` call in the previous expression for the sake of accuracy. `zip` works with iterators of different lengths and stops at the end of the shortest iterator. Therefore, the length of the returned iterator is the length of the shortest parameter.  
 
 The name zip is a bit confusing ; it has nothing to do with data compression. It refers to the ubiquitous fastener. A zipper takes two rows of teeth and binds the corresponding teeth. In a somewhat similar way, the `zip` function takes two lists and binds their items into pairs.   
 
@@ -84,9 +93,14 @@ edges = zip(path,path[1:])
 <a name="dotProduct">A last example for the mathematically oriented readers. With `zip`, you can calculate the [dot product](https://en.wikipedia.org/wiki/Dot_product) of two vectors: 
 ```python
 # vector1 and vector2 are two lists representing two vectors
-dotProduct = 0
+
+# a first version with a for loop
+dotProductLoop = 0
 for v1Value, v2Value in zip(vector1,vector2):
-    dotProduct += v1Value * v2Value
+    dotProductLoop += v1Value * v2Value
+
+# and a second version with sum
+dotProductSum = sum(value1*value2 for value1,value2 in zip(vector1,vector2))
 ```
  
 As I said before, `zip` is not limited to 2 iterators and works with an arbitrary number of iterators. Also, `zip` does not build a new collection, it returns an iterator that you can use in a `for` loop. If you want to reuse the result several times, you can build a list: `list(zip(coll1,coll2,coll3))`.  
@@ -94,7 +108,7 @@ As I said before, `zip` is not limited to 2 iterators and works with an arbitrar
 
 ## Hands on session
 
-In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` function.
+In the following exercise you have to implement the `pairs` and `evenOdd` functions, which take a single `length` argument and return a list of pairs. For the `pairs` function, the n<sup>th</sup> returned pair is `(n,n+1)`, so `pairs(3)` returns `[(0,1),(1,2),(2,3)]`. For the `evenOdd` function, the n<sup>th</sup> returned pair is `(n*2,(n*2)+1)`, so `evenOdd(3)` returns `[(0,1),(2,3),(4,5)]`. To implement these two functions, you have use only the `zip` and `range` functions.
 
 @[Implement the pairs and evenOdd functions]({"stubs": ["rangeZip.py"], "command": "python3 testRangeZip.py"})
 
@@ -115,13 +129,3 @@ The goal of the next exercise is to implement `enumerate` with `zip`.
 
 @[Implement the enumerate function]({"stubs": ["enumerateZip.py"], "command": "python3 testEnumerateZip.py"})
 
-# Reducing functions: `sum`, `min` and `max`
-
-In functional programming terminology, reducing a collection means iterating the collection in order to create a single value. `sum`, `min` and `max` all work on number collections, but with generator expressions their scope is much wider. For example:
-
-```python
-myScore = sum(chest.value for chest in chestList)
-opponentStrength = max(character.strength for character in opponentList)
-```
-
-`min` and `max` do not support empty collections and will raise a ValueError exception when they receive one. `sum` returns 0  for an empty collection.
