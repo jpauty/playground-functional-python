@@ -2,7 +2,7 @@ We now come back to higher order functions. I will present `map`, `filter` and `
 
 When we work with collections, two very common programming patterns emerge: 
  1. <a name="firstPattern"></a>*iterating a collection to build another collection.* In this case, at each iteration, we want to apply some transformation or some test to the current item and append the result to the new collection. `map`, `filter` and `sorted` fall into this category.
- 2. <a name="secondPattern"></a>*iterating a collection and accumulating intermediate results to build a single value.* `any`, `all`, `min`, `max` and `sum` fall into this category. In this section we will study `reduce` which is a generalized version of these 5 functions. As an exercise, you will use `reduce` to write your own version of these functions.  
+ 2. <a name="secondPattern"></a>*iterating a collection and accumulating intermediate results to build a single value.* `any`, `all`, `len`, `min`, `max` and `sum` fall into this category. In this section, we will study `reduce` which is a generalized version of these specific functions. As an exercise, you will use `reduce` to write your own version of these functions.  
  
 # Converting the items of a collection with `map`.
 
@@ -14,8 +14,8 @@ Most of the time, you can use a generator expression instead of a call to `map`.
 
 ```python
 # we reuse the class BonusChest of the introduction
-wealthMap = sum(map(BonusChest.getNumCoins, myChests))
-wealthGen = sum(chest.getNumCoins() for chest in myChests)
+wealthUsingMap = sum(map(BonusChest.getNumCoins, myChests))
+wealthUsingGen = sum(chest.getNumCoins() for chest in myChests)
 ```
 
 # Filtering collections with `filter`
@@ -24,11 +24,17 @@ wealthGen = sum(chest.getNumCoins() for chest in myChests)
 
 Again, to get the 10 first even numbers, with `filter` you can write: `evens = filter(lambda n: n%2==0, range(20))`.
 
-Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`. But, if you have the filtering function at hand, `filter` give very readable code: `evens = filter(isEven,range(20))`.  
+Like `map`, most of the time you can replace a call to `filter` by a generator expression: `evens = (n for n in range(20) if n%2 == 0)`. But, if you have the filtering function at hand, `filter` gives very readable code: `evens = filter(isEven,range(20))`.  
 
 # Aggregating a collections to a single value with `reduce`
 
-In this section we will study `reduce`, and we will also try learn some functional thinking: how can we convert imperative code to functional code ? We will rely on the factorial function as our supporting example.
+In this section, we will study `reduce` and we will also try to learn some functional thinking: how can we convert imperative code to functional code ? We will rely on the factorial function as our supporting example.
+
+`reduce` takes 3 arguments: 
+ 1. an accumulating function which takes 2 arguments : (1) the current accumulated value; (2) the current item. It return the final accumulated value.
+ 1. an iterator which contains the values to be accumulated;
+ 1. an initial value for the accumulated value.
+`reduce` returns the final accumulated value.
 
 ## From an imperative factorial to a functional one
 
@@ -42,13 +48,7 @@ def factorial(n):
 fact10 = factorial(10) 
 ```
 
-So, how do we rewrite this function in a functional style ? We saw that functional programming relies on collections. Here Python is easy with us, since the for loop goes through an iterator. For `factorial`, the handled collection is `range(1,n)`, which represent all the numbers we want to multiply. Next, we see that the imperative factorial function returns a single value, so we can probably implement it with our [second programming pattern](#secondPattern): it processes a collection and returns a single value. Now, we see that the `fact` variable is used as an accumulator: at each iteration it is multiplied by the current item. This clearly corresponds to the second kind programming pattern, so we should be able to replace the body of `factorial` by a call to `reduce`.  
-
-`reduce` takes 3 arguments: 
- 1. an accumulating function which takes 2 arguments : (1) the current accumulated value; (2) the current item. It return the final accumulated value.
- 1. an iterator which contains the values to be accumulated;
- 1. an initial value for the accumulated value.
-`reduce` returns the final accumulated value.   
+So, how do we rewrite this function in a functional style? We saw that functional programming relies on collections. Here Python is easy with us, since the for loop goes through an iterator. For `factorial`, the handled collection is `range(1,n)`, which represents all the numbers we want to multiply. Next, we see that the imperative factorial function returns a single value, so we can probably implement it with our [second programming pattern](#secondPattern): it processes a collection and returns a single value. Now, we see that the `fact` variable is used as an accumulator: at each iteration it is multiplied by the current item. This clearly corresponds to the second kind programming pattern, so we should be able to replace the body of `factorial` by a call to `reduce`.  
 
 For factorial, the accumulating function is the multiplication. Thus, we have our first argument and can write `reduce(mult,?,?)`. We suppose here that we have a `mult` function at hand. We found that the accumulated collection is `range(1,n)`, so we can fill in the second argument:  `reduce(mult,range(1,n),?)`. We just need the start value to complete our call. It's of course 1 for factorial, but you can also find it by searching the accumulator variable in the imperative version and lookup its initial value. The complete call is: `reduce(mult,range(1,n),1)`.
 
@@ -65,16 +65,16 @@ fact10 = factorial(10)
 
 Let's now analyse the two import calls that we used in the functional factorial. Starting from Python 3, you must import `reduce` from the `functools` module. In Python 2, reduce was a built-in function and was always available. Even if `reduce` is not a built-in function per-se, we cannot skip it ; we would loose a whole part of the functional programming fun. `reduces` is really the buddy of `map` and `filter`. See for example the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) of Google.
 
-Next, we import the `mult` function from the `operator` module. This module contains many utility functions which are particularly useful with higher order functions. They spare you from writing small lambda functions for common operations, such as arithmetic operations, boolean operations, attribute access...   
+Next, we import the `mult` function from the `operator` module. This module contains many utility functions which are particularly handy with higher order functions. They spare you from writing small lambda functions for common operations, such as arithmetic operations, boolean operations, attribute access...   
 
 ## Some subjective functional programming advocacy
 
 Of course you do not need to always write the imperative version and convert it to the functional version. However, taking a piece of existing code and trying to make it functional is a good exercise. You can apply the same method we used for factorial: (1) identify the collection ; (2) does the code rely on one of our two the [functional patterns](#firstPattern) ? ; (3) which function will you use ? After some time and with practice, you will start to think functionally and skip the imperative version. 
 
-A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's see how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This is our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start.
+A benefit of functional programming is that it simplifies the reading of programs. When reading from left to right, you read first the outer function, which gives the general scope of the operation. Arguments gives you the details. Let's see how this applies to a our `reduce` call. When you see `reduce`, you know that we will process an iterator and generate a value. This is our second functional pattern. Then, you read the accumulating operation, `mult` in our example. So, at this point, we know that we will perform a sequence of multiplication and return the final value. The next argument tells us what is the sequence of multiplied numbers. The final argument tells from where we start. On the contrary, when you see the imperative version, you have to work out the details, such as analyzing how the loop updates the variables, to extract the general algorithm.
 
-If you compare the two versions of factorial, you will see that `reduce:
- 1. gives us a more compact code, without sacrifying readability;
+If you compare the two versions of factorial, you will see that `reduce`:
+ 1. gives us a more compact code, without sacrificing readability;
  1. is less error prone, because it does not rely on an intermediate variable that you have to declare, initialize and maintain in the for loop. 
 
 ## Please, stay in readable code territory
@@ -103,4 +103,4 @@ def factorial(n):
 
 The next exercise will illustrate how general `reduce` is. You have now to implement `any`, `all`, `sum`, `min` and `max` by calling reduce. For the sake of simplicity, you can consider that `max` and `min` receive a list of int comprised between 0 and 1000.
 
-@[Use reduce to implement your own version of any, all, sum min and max]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
+@[Use reduce to implement your own version of any, all, sum, min and max]({"stubs": ["reduceUseCase.py"], "command": "python3 testReduceUseCase.py"})
