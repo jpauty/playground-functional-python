@@ -6,7 +6,7 @@ Don't worry, this is quite normal. Functional programming addresses programming 
 
 Python does not enforce a programming style. You can progressively introduce functional constructions in your code. `any` and `all` are two functions that really improve code readability and which are easy to grasp. At first, you can try to keep them in your head and try to use them when needed. `sum`, `min` and `max` are also easy to use. After a while, you will be able to combine them.
 
-If you want to take a more active approach to learning functional programming, you can select an algorithm you wrote recently and try to make it more functional. You can start with the method we applied to convert [factorial]((/markdowns/higherOrder.md):
+If you want to take a more active approach to learning functional programming, you can select an algorithm you wrote recently and try to make it more functional. You can start with the method we applied to convert [factorial](/markdowns/higherOrder.md):
  1. identify the collection used by the algorithm;
  2. identify the programming pattern;
  3. look for matching functions.
