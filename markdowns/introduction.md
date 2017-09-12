@@ -20,7 +20,7 @@ class BonusChest(object):
     def __init__(self,x,y,numCoins):
         self.x = x
         self.y = y
-        self.numCoins
+        self.numCoins = numCoins
     def getNumCoins(self):
         return self.numCoins
 ```
