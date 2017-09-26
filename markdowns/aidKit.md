@@ -2,7 +2,7 @@ Hi there, I'm Dr. Fun. Please describe your symptoms and I'll try to find the cu
 
 # I cannot find any place to use those fancy new functions I just discovered
 
-Don't worry, this is quite normal. Functional programming addresses programming problems in a somewhat different way than imperative programming. Adopting a functional programming mindset takes time. The first step is to know that is exists and that it can bring useful solutions. With some practice, you will spot more and more places where you can use these functions.
+Don't worry, this is quite normal. Functional programming addresses programming problems in a somewhat different way than imperative programming. Adopting a functional programming mindset takes time. The first step is to know that it exists and that it can bring useful solutions. With some practice, you will spot more and more places where you can use these functions.
 
 Python does not enforce a programming style. You can progressively introduce functional constructions in your code. `any` and `all` are two functions that really improve code readability and which are easy to grasp. At first, you can try to keep them in your head and try to use them when needed. `sum`, `min` and `max` are also easy to use. After a while, you will be able to combine them.
 
